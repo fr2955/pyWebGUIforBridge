@@ -1,5 +1,5 @@
 from flask import Flask
-
+from arduinoSerial import *
 app = Flask(__name__)
 
 
