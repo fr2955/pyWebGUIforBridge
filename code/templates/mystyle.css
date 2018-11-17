@@ -1,0 +1,16 @@
+body {
+    background-color: chartreuse;
+    align-items: center;
+    object-position: center;
+}
+.center {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    padding: 25px;
+    width: 100px;
+    border: 3px solid red;
+}
