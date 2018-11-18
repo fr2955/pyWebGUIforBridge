@@ -1,6 +1,5 @@
 import serial
-from flask import request
-from flask import Flask
+from flask import Flask, render_template, request
 from time import sleep
 
 
@@ -10,13 +9,12 @@ sleep(1)
 ser.flushInput()
 ser.setDTR(False)
 
-app = Flask(__name__)
 
-@app.route('/', methods = ['POST', 'GET'])
-def webApp():
+app = Flask(__name__)
+@app.route('/', methods=['POST', 'GET'])
+def index():
     if request.method == 'POST':
         print(request.form['submit'])
-
         if request.form['submit'] == 'OPEN':
             print("Open")
             ser.write(str.encode('4'))
@@ -25,7 +23,6 @@ def webApp():
             ser.write(str.encode('5'))
         else:
             pass  # unknown
-    return '<form action="/" method="POST"><input type="submit" name="submit" value="OPEN"><input type="submit" name="submit" value="CLOSE"></form>'
-
+    return render_template('home.html')
 if __name__ == "__main__":
-    webApp.run(app)
+    app.run(debug= True)

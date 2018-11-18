@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Bridge Controller</title>
-    <link rel="stylesheet" type="text/css"href="mystyle.css">
+    <link rel="stylesheet" type="text/css"href="../static/mystyle.css">
 
 </head>
 <body>
 <div class = "center">
+    {% if error %}
+      <p><strong>Error:</strong> {{ error }}
+      {% endif %}
+    <p>
+        What do you want to do?
+    </p>
     <form action="/" method="POST">
-        <input type="submit" name="open" value="OPEN">
-        <input type="submit" name="close" value="CLOSE">
+        <input type="submit" name="submit" value="OPEN">
+        <input type="submit" name="submit" value="CLOSE">
     </form>
 </div>
 </body>
