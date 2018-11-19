@@ -1,15 +1,15 @@
-import serial
-from flask import Flask, render_template, request
-from time import sleep
+from code import arduinoSerial
+import time
+import atexit
+from flask import Flask, request, render_template, redirect, url_for, send_from_directory
+
+app = Flask(__name__)
 
 
-ser = serial.Serial('COM5', 9600)
-ser.setDTR(True)
-sleep(1)
-ser.flushInput()
-ser.setDTR(False)
-
-
+def setupSerial():
+	global arduino
+	arduino=arduinoSerial.Arduino(9600,'*',0)
+setupSerial()
 app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -17,12 +17,28 @@ def index():
         print(request.form['submit'])
         if request.form['submit'] == 'OPEN':
             print("Open")
-            ser.write(str.encode('4'))
+            arduino.serWrite('4')
         elif request.form['submit'] == 'CLOSE':
             print("Close")
-            ser.write(str.encode('5'))
+            arduino.serWrite('5')
+        elif request.form['submit'] == 'RECO':
+            print("Reconnecting")
+            setupSerial()
+        elif request.form['submit'] == 'DISCO':
+            print("Terminating Program")
+            exit()
+
         else:
             pass  # unknown
     return render_template('home.html')
+
+
+@app.route('/state')
+def getState():
+    arduino.serWrite('6')
+    a = arduino.serRead()
+    print(a)
+    return a
+
 if __name__ == "__main__":
-    app.run(debug= True)
+	app.run(debug=True)

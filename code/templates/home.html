@@ -3,20 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Bridge Controller</title>
-    <link rel="stylesheet" type="text/css"href="../static/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        function updateDisplay() {
+                document.getElementById("state").innerHTML = customValue();
+        }
 
+               function customValue(val) {
+            return val
+        }
+
+
+        setInterval(rfr,2000);
+
+        function rfr () {
+            $.ajax({//jquery ajax variable
+                type: 'get', //type of query
+                dataType: 'text', //data expected from server
+                url: '/state', //the url od script
+                data: {status: 'state'} //data that it will be sent to the server
+
+            })
+                .done(function (status) {// after a succesfull exchange this function it will be executed
+                    updateDisplay().refresh(status);
+                });
+        }
+    </script>
 </head>
 <body>
 <div class = "center">
-    {% if error %}
-      <p><strong>Error:</strong> {{ error }}
-      {% endif %}
+    <div id="state">
+        <p>
+
+        </p>
+    </div>
     <p>
         What do you want to do?
     </p>
     <form action="/" method="POST">
-        <input type="submit" name="submit" value="OPEN">
-        <input type="submit" name="submit" value="CLOSE">
+        <input type="submit" name="submit" value="OPEN" align="left">
+        <input type="submit" name="submit" value="CLOSE" align="right">
+    </form>
+</div>
+<div class = "bottom">
+    <p>
+        Controller Commands
+    </p>
+    <form action="/" method="POST">
+        <input type="submit" name="submit" value="RECO">
+        <input type="submit" name="submit" value="DISCO">
     </form>
 </div>
 </body>
