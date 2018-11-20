@@ -1,7 +1,7 @@
 /*
    @Author Frank Ricker
-   Made for the engineering project to control the bridge with servos
-   New version to work with python app
+   Made for the engeineering prodject to controll the bridge with servos
+   New version to work with python aplett
 */
 
 //Lybrarys to Include
@@ -12,6 +12,7 @@
 Servo Side_a;
 Servo Side_b;
 int state = 0, adjH = 5000; //state = bridge state, oppen = 1, closed = 0, opening = 2, closing = 3, adjH changes hight timeout
+String disUpdate = "Steel Strong Inc.";
 String a;
 const int rs = 12,
           en = 11,
@@ -31,7 +32,7 @@ void setup() {
   Side_b.attach(10);
   Side_a.write(90); Side_b.write(90); //Int servos
   lcd.begin(16, 2);
-  lcd.write("Steel Strong INC.");
+  lcd.print(String(disUpdate));
   lcd.setCursor(0, 1);
   lcd.write("BridgeControler 2");
   Serial.begin(9600);
@@ -44,15 +45,25 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   a = Serial.readString();
-  if (a.toInt() == 4)
+  if(a.startsWith("u"))
+  {
+    lcd.setCursor(1,0);
+    disUpdate = "";
+    for(int c = 1; c < 20; c++){
+      disUpdate = disUpdate + a.charAt(c);
+    }
+    lcd.print(String(disUpdate));
+    Serial.println(disUpdate);
+  }
+  else if (a.startsWith("o"))
    { if(state == 0)
       Oppen();
-      }
-  else if (a.toInt() == 5)
+   }
+  else if (a.startsWith("c"))
     {if(state == 1)
       Close();
-      }
-  else if (a.toInt() == 6)
+    }
+  else if (a.startsWith("s"))
    { Status();}
   else if (digitalRead(6) == HIGH) {
     if (state == 0)
@@ -82,7 +93,7 @@ void Oppen() {
     state = 1;
     Status();
     }
-    
+
 }
 void Close(){
     if(state == 1){
