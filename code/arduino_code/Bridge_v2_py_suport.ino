@@ -1,7 +1,7 @@
 /*
    @Author Frank Ricker
-   Made for the engeineering prodject to controll the bridge with servos
-   New version to work with python aplett
+   Made for the engineering project to control the bridge with servos
+   New version to work with python app
 */
 
 //Lybrarys to Include
