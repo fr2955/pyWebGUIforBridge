@@ -27,7 +27,6 @@ def index():
         elif request.form['submit'] == 'DISCO':
             print("Terminating Program")
             exit()
-
         else:
             pass  # unknown
     return render_template('home.html')

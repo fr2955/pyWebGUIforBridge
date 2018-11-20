@@ -6,44 +6,43 @@
     <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript">
-        function updateDisplay() {
+       function updateDisplay() {
                 document.getElementById("state").innerHTML = customValue();
         }
 
-               function customValue(val) {
-            return val
+               function customValue(status) {
+            return status
         }
 
 
         setInterval(rfr,2000);
 
         function rfr () {
-            $.ajax({//jquery ajax variable
+            let done = $.ajax({//jquery ajax variable
                 type: 'get', //type of query
-                dataType: 'text', //data expected from server
+                contentType: 'text/pain', //data expected from server
                 url: '/state', //the url od script
-                data: {status: 'state'} //data that it will be sent to the server
+
 
             })
                 .done(function (status) {// after a succesfull exchange this function it will be executed
-                    updateDisplay().refresh(status);
-                });
+                    k = status.toString();
+                    updateDisplay().refresh(k);
+                })
         }
     </script>
 </head>
 <body>
 <div class = "center">
-    <div id="state">
-        <p>
-
-        </p>
-    </div>
+    <h4>
+        The Bridge is: <div id="state"><p></p></div>
+    </h4>
     <p>
         What do you want to do?
     </p>
     <form action="/" method="POST">
-        <input type="submit" name="submit" value="OPEN" align="left">
-        <input type="submit" name="submit" value="CLOSE" align="right">
+        <input type="submit" name="submit" value="OPEN">
+        <input type="submit" name="submit" value="CLOSE">
     </form>
 </div>
 <div class = "bottom">
