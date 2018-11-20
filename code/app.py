@@ -36,8 +36,8 @@ def index():
 def getState():
     arduino.serWrite('s')
     a = arduino.serRead()
-    print("deez nuts")
-    return "deez nuts"
+    print("test")
+    return "test"
 
 if __name__ == "__main__":
 	app.run(debug=True)
