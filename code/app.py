@@ -17,10 +17,10 @@ def index():
         print(request.form['submit'])
         if request.form['submit'] == 'OPEN':
             print("Open")
-            arduino.serWrite('4')
+            arduino.serWrite('o')
         elif request.form['submit'] == 'CLOSE':
             print("Close")
-            arduino.serWrite('5')
+            arduino.serWrite('c')
         elif request.form['submit'] == 'RECO':
             print("Reconnecting")
             setupSerial()
@@ -34,10 +34,10 @@ def index():
 
 @app.route('/state')
 def getState():
-    arduino.serWrite('6')
+    arduino.serWrite('s')
     a = arduino.serRead()
-    print(a)
-    return a
+    print("deez nuts")
+    return "deez nuts"
 
 if __name__ == "__main__":
 	app.run(debug=True)
