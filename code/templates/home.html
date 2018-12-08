@@ -6,28 +6,26 @@
     <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript">
-       function updateDisplay() {
-                document.getElementById("state").innerHTML = customValue();
+    function refresh() {
+      var req = new XMLHttpRequest();
+      console.log("Grabbing Value");
+      req.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+          document.getElementById('state').innerText = req.responseText;
         }
+      }
+      req.open("GET", 'state', true); // Grabs whatever you've written in this file
+      req.send(null);
+    }
 
-               function customValue(status) {
-            return status
-        }
-
-
-        setInterval(rfr,2000);
-
-        function rfr () {
-            let done = $.ajax({//jquery ajax variable
-                type: 'get', //type of query
-                contentType: 'text/pain', //data expected from server
-                url: '/state', //the url od script
-                data: {state: 'state'}
-            };
-
-                updateDisplay();
-        }
-    </script>
+    function init() // This is the function the browser first runs when it's loaded.
+    {
+      refresh() // Then runs the refresh function for the first time.
+      var int = self.setInterval(function () {
+        refresh()
+      }, 2000); // Set the refresh() function to run every 10 seconds. [1 second would be 1000, and 1/10th of a second would be 100 etc.
+    }
+</script>
 </head>
 <body>
 <div class = "center">
