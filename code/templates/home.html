@@ -7,7 +7,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript">
        function updateDisplay() {
-           var status= "oppen;"
                 document.getElementById("state").innerHTML = customValue();
         }
 
@@ -23,14 +22,10 @@
                 type: 'get', //type of query
                 contentType: 'text/pain', //data expected from server
                 url: '/state', //the url od script
-                data:{state:'state'}
+                data: {state: 'state'}
+            };
 
-            })
-            .done(function(status){
-                var k=status.split(':'); // make an array of data
-				updateDisplay().refresh(k);
-
-            });
+                updateDisplay();
         }
     </script>
 </head>
