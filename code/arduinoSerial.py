@@ -26,13 +26,13 @@ class Arduino:
         for p in ports:
             cprint(p, 'green', end="\n")
             loop = True
-        while loop:
+        while loop == True:
             comPort = input("Please enter the serial port number: ")
             if comPort == 'q':
                 print("Stopped by user...")
                 time.sleep(2)
                 sys.exit()
-            if self.__connect(comPort):
+            if self.__connect(comPort) == True:
                 loop = False
 
     def __autoComPort(self):
