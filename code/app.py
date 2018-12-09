@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 def setupSerial():
     global arduino
-    arduino=arduinoSerial.Arduino(9600,'*',0)
+    arduino = arduinoSerial.Arduino(9600, '*', 0)
 
 
 setupSerial()
@@ -45,4 +45,3 @@ def getState():
 
 if __name__ == "__main__":
     app.run(debug=False)
-
