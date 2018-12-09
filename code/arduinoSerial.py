@@ -32,14 +32,6 @@ class Arduino:
                 print("Stopped by user...")
                 time.sleep(2)
                 sys.exit()
-            '''
-			if os.name=='posix':
-				if self.__connect(comPort)==True:
-					loop=False
-			if os.name=='nt':
-				if self.__connect("COM"+comPort)==True:
-					loop=False
-	'''
             if self.__connect(comPort) == True:
                 loop = False
 
