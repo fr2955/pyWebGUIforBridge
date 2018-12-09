@@ -1,16 +1,19 @@
+from flask import Flask, request, render_template
+
 from code import arduinoSerial
-import time
-import atexit
-from flask import Flask, request, render_template, redirect, url_for, send_from_directory
 
 app = Flask(__name__)
 
 
 def setupSerial():
-	global arduino
-	arduino=arduinoSerial.Arduino(9600,'*',0)
+    global arduino
+    arduino=arduinoSerial.Arduino(9600,'*',0)
+
+
 setupSerial()
 app = Flask(__name__)
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -39,6 +42,7 @@ def getState():
     print("test")
     return "test"
 
+
 if __name__ == "__main__":
-	app.run(debug=False)
-    ###Thomasdf
+    app.run(debug=False)
+
