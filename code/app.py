@@ -30,6 +30,9 @@ def index():
         elif request.form['submit'] == 'DISCO':
             print("Terminating Program")
             exit()
+        elif request.form['submit'] == 'SWAP':
+            print("Swapping Bridge State")
+            arduino.serWrite('e')
         else:
             pass  # unknown
     return render_template('home.html')
