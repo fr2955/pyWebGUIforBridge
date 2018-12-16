@@ -118,7 +118,7 @@ void Close(){
     ledOn();
     Side_a.write(0);
     Side_b.write(0);
-    delay((adjH-530));
+    delay((adjH-300));
     Side_a.write(90);
     Side_b.write(90);
     ledOff();
