@@ -63,7 +63,7 @@ void loop() {
     else if(state == 2)
       lcd.print("Bridge Opening");
     else if(state == 3)
-      lcd.print("Bridge Closeing");
+      lcd.print("Bridge Closing");
     Serial.println(disUpdate);
   }
   else if (a.startsWith("o"))
@@ -118,7 +118,7 @@ void Close(){
     ledOn();
     Side_a.write(0);
     Side_b.write(0);
-    delay((adjH-490));
+    delay((adjH-530));
     Side_a.write(90);
     Side_b.write(90);
     ledOff();
