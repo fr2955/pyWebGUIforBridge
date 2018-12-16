@@ -132,16 +132,30 @@ void Status() {
   Serial.println(state);
 }
 void changeState(){
-  if(state == 0)
+  /*if(state == 0)
   {
     state = 1;
     Status();
+    break;
   }
   else if(state == 1)
    {
     state = 0;
     Status();
-    }
+    }*/
+    switch (state) {
+  case 0:
+    state = 1;
+    Status();
+    break;
+  case 1:
+    state = 0;
+    Status();
+    break;
+  default:
+    // statements
+    break;
+}
 }
 void ledOn(){
  digitalWrite(8, HIGH);
