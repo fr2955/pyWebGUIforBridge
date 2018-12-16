@@ -132,30 +132,23 @@ void Status() {
   Serial.println(state);
 }
 void changeState(){
-  /*if(state == 0)
-  {
-    state = 1;
-    Status();
-    break;
-  }
-  else if(state == 1)
-   {
-    state = 0;
-    Status();
-    }*/
-    switch (state) {
+  switch (state) {
   case 0:
     state = 1;
+    Status();
+    lcd.print("  Bridge Open   ");
     Status();
     break;
   case 1:
     state = 0;
     Status();
+    lcd.setCursor(0, 1);
+    lcd.print(" Bridge Closed  ");
     break;
   default:
     // statements
     break;
-}
+    }
 }
 void ledOn(){
  digitalWrite(8, HIGH);
