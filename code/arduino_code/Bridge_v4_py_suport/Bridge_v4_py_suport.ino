@@ -134,8 +134,10 @@ void Status() {
 void changeState(){
   if(state == 0)
     state = 1;
-  if(state == 1)
+    Status();
+  else if(state == 1)
     state = 0;
+    Status();
 }
 void ledOn(){
  digitalWrite(8, HIGH);
