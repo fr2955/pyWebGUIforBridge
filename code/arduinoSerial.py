@@ -3,6 +3,7 @@ import os
 from termcolor import *
 import serial
 import serial.tools.list_ports  # for viewing serialports
+
 import time
 import sys
 
